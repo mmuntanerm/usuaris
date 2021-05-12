@@ -1,0 +1,52 @@
+extends layoutBS.4.5
+
+block content
+  h1= title
+ 
+
+  -var NumLinies = Array.from(new Set (dades.map(x=>x.linea*1))).sort((x,y)=>x-y)  
+  -var mpL = new Map(); 
+  //- -var a = linies.forEach(L=>{ console.log(L.Linea, L.Nombre)})
+  -var a = linies.forEach(L=>{ mpL.set(L.Linea, L.Nombre)})
+
+  //- div.container
+  //- each l in linies 
+  //-   p Lin: #{l.Linea}  Nom: #{l.Nombre}
+
+
+  div.container
+  each ln in NumLinies
+  
+    p &nbsp;
+    h1.text-white.bg-dark.p-2 Línia: #{ln}  
+      span.small.text-secondary #{mpL.get(ln)}
+      span.small.text-primary.float-right &nbsp;  #{dades[0].TpDIA} &nbsp;&nbsp;&nbsp;
+    //- h4 #{mpLinies.get(ln).Nombre}
+    //- p &nbsp;
+    -var sentidos = Array.from(new Set(dades.filter(x=>x.linea==ln).map(x=>x.sentido))).sort((x,y)=>x-y)
+    -var cabeceras = Array.from(new Set(dades.filter(x=>x.linea==ln).map(x=>`Sentido: ${x.sentido}:  Nd-${x.Nodo} - ${x.Nombre}`)))
+    .row  
+      each sn in sentidos
+        -var cabecerasS = Array.from(new Set(dades.filter(x=>x.linea==ln&x.sentido==sn).map(x=>`Sentido: ${x.sentido}:  Nd-${x.Nodo} - ${x.Nombre}`)))
+        div.col-5.m-1 
+            h3.text-warning Sentido : #{sn}
+            //- p &nbsp;
+            -var sortides =  dades.filter(x=>x.linea==ln && x.sentido==sn).map(x=>x.HRPas) 
+            -var sortides2 =  dades.filter(x=>x.linea==ln && x.sentido==sn).sort((x,y)=>x.instanteTEO-y.instanteTEO)
+            .clearfix.border.border-secondary.rounded.p-2
+              each hora in sortides2 
+                  span.Horapas.m-1.p-1.border.float-left(class="Nd-#{hora.Nodo}")=hora.HRPas
+            
+            .clearfix.border.p-3
+              p &nbsp;
+              h5.p-1 Capçaleres Linia Sentit #{sn}
+              each cb in cabecerasS 
+                h6=cb
+    .div.hidden
+      p &nbsp;
+      h5 Cabeceras linea:
+      each cb(class="retol" ) in cabeceras 
+        h6=cb
+
+    p &nbsp;
+      

@@ -1,0 +1,153 @@
+
+
+//- text pantalla Ajuda Pasos Per Parada 
+mixin textAjudaPasos() 
+	p.consola
+		em uri: http://pc12141:3000/sae/pasos/data/2018/05/17/linia/15/429?web=1
+	h4.text-success Selecció de Data / Linia / parada
+	
+	blockquote 
+		dl 
+			dt Paràmetres
+				dd S'ha de seleccionar una data darrera de /data en format aaaa/mm/dd
+				dd S'ha de seleccionar la línia 'll' i parada 'ppp' darera de /linia/ll/(ppp)
+		
+			dt Notes importants
+				dd Línia=0 vol dir totes les línies	
+				dd La parada és opcional, si no s'indica surten totes les parades de la línia
+				dd 
+			p   
+			p.destaca.esponjado Exemple 
+				p.consola 
+					em  http://pc12141:3000/sae/pasos/data/2018/05/14/linia/7?web=1
+				| mostrarà tots els pasos per les parades de la línia 7 	
+				
+			dt Filtre per tipus de Node (parada)
+				dd Es Pot filtrar per tipus de Node: 
+				ul
+					li tpNodo=1 'Parada Normal'
+					li tpNodo=5 'Cotxeres'
+				dd Normalment , si no s'indica cap parametre es filtren parades Normals
+				dd Usau 
+					em tpNodo=5 per filtrar cotxeres.
+			p 
+			p.destaca.esponjado Exemple:
+				p.consola 
+					em http://pc12141:3000/sae/pasos/data/2018/07/04/linia/0/2?web=1&tpNodo=5#
+			dt
+				dd El TpNodo=1 és el valor per defecte i no cal posar-lo si el que es vol es els passos per parades 'normals'
+				dd Així que les peticions :
+					p.esponjado
+						em http://pc12141:3000/sae/pasos/data/2018/07/04/linia/0/2?web=1&tpNodo=1#
+					p.esponjado
+						em http://pc12141:3000/sae/pasos/data/2018/07/04/linia/0/2?web=1#
+				dd fan el mateix.
+	blockquote 
+		dl 
+			dt Marques
+				dd 	Fent click sobre alguns camps de la taula es marquen tots els que son iguals
+					| Per exemple clicant sobre una línia determinada tots els pasos d'aquesta línia es destaquen
+					| igualment si es marca sobre un servei , tots els pasos dels servei es destaquen
+	blockquote 
+		dl 
+			dt FILTRES 
+				dd 	Fent CTRL+click sobre alguns camps : event o coche ocultam aquests events o cotxe
+					br
+					| Per exemple clicant amb CTRL sobre un numero de cotxe, tots els passo del cotxe s'oculten
+					| igualment si es marca sobre un determinat event amb control , aquest event s'oculta.
+					br
+					| Observeu que es tornen a mostrar TOTS si es pulsa sobre restablir Filtres
+	
+	blockquote 
+		dl			
+			dt Boto restablir marques
+				dd El Botó restablir marques desmarca tots els camps previament marcats
+
+			dt Boto restablir Filtres 		
+				dd El Botó restablir filtres elimina els filtratges realitzats amb CTRL+CLICK
+
+			dt Switch filtrar columnes
+				dd  El boto filtrar columnes permet ocultar algunes columnes menys significatives per 
+					|	 millor legibilitat de la informació de pas 
+					| si es selecciona No al filtrat es tornen a mostrar les columnes
+	blockquote
+		dl 
+			dt Sobre els events: 
+				dd descripció: 
+				img(src='/images/eventos.png' alt='descripció dels events de SAENext' width='80%')
+		
+
+mixin textAjudaComptaPasos()
+	p URI:
+	p.consola
+		p 
+			em http://pc12141:3000/sae/comptapasos/data/2018/07/11/?web=1&h1=0&h2=29#
+		p opcionalment:
+		p
+			em http://pc12141:3000/sae/comptapasos/data/2018/07/11/?web=1#
+	hr 		
+	h4 Parametres:
+	h5.text-success Selecció de Data : aaaa/mm/dd
+	h4 Parametres Addicionals [ Opcionals ]
+	h5.text-success  Hora inici (h1) / Hora Final (h2) / Format Web|JSON web=1|0
+	dl
+		dt Paràmetres:
+			dd S'ha de seleccionar una data darrera de /data en format 
+				b aaaa/mm/dd
+			dd La reste dels parametres són opcionals
+		dt Paràmetres Opcionals:
+			dd h1 --> hora Inferior del filtratge d'hores a considerar pels pasos per parada
+			dd h2 --> hora Superior del filtratge d'hores a considerar pels pasos per parada
+			p.warning Les hores poden ser xifres decimals, per exemple 10.5 per indicar les 10:30
+			dd web 
+				ul
+					li -> Si val 1 es motra el contingut en format WEB 
+					li -> Altres valors exporten el resultat directament en JSON
+
+
+mixin textAjudaHorTeor()
+	h4.text-success Mostra Horari Teòric planificat a SAE per a una línia 
+	.well URI
+		p.consola
+			em http://pc12141:3000/sae/teoric/data/
+			span.destacado 2018/07/17
+			span.normal /linia/
+			span.destacado 3
+			span ?web=1
+	span on especificam la 
+		em.destacado línia 
+		span a mostrar a la 
+		em.destacado data 
+		span indicada a la pròpia URI 
+
+	h2.il1 Observacions: 
+	dl
+		dt.il1 Ordenar - Reordenar la taula  
+			dd La ordenació inicial es per vehícle (cotxe) i hora però aquest llistat es pot reordenar
+			dd Per reordenar per qualsevol camp basta fer 
+				em.destacado click 
+				span sobre la capçalera de la columna de la taula.
+			dd Mantenint 
+				b SHIFT 
+				span es pot ordenar per varies columnes a l'hora.
+
+		dt.il1 Filtrar un Nodo  ( parada ) 		
+			dd Es possible filtrar una parada fent 
+				em.destacado click 
+				span sobre un número de nodo. En seleccionar-lo només es mostren dades d'aquesta parada
+
+		dt.il1 Anular el filtratge
+			dd Per anular el filtratge es pot fer amb 
+				em.destacado Alt+Click 
+				span sobre qualsevol camp de la taula (preferentment el camp NODO) o bé usant el botó ad hoc 
+				em.destacado Sense filtre
+
+		dt.il1 Eliminar Events del llistat
+			dd Fent click sobre un event , aquest numero d'event deixa de estar visible al llistat 
+			dd Per treure el filtratge usar les opcions indicades a 
+				em.destacado Anular el filtratge
+
+
+
+
+

@@ -1,0 +1,78 @@
+//- Incloure els continguts de les ajudes al fitxer HelpTopics 
+include ./HelpTopics_text.jade
+
+//-  cabecera estandar amb LOGO
+mixin cabecera1(mTitol,mSotstitol)
+	#cap.encabezado.downround.row
+		div.col-sm-5.col-md-3
+			img.img-rounded(src='/images/Logo1.png' alt='logo EMT' width='200px')
+		div.col-sm-7.col-md-9.row
+			h1.col-sm-6.col-md-9=mTitol
+			h4.col-sm-6.col-md-3
+				span=mSotstitol	
+
+//- Peu estandar [sense Logo]
+mixin peu0(mTitolPeu,mDataPeu, mfoo)
+	#peu.encabezado.upround
+		.row
+			h5.col-xs-7.col-sm-8.col-md-10=mTitolPeu
+			h6.col-xs-4.col-sm-3.col-md-2=mDataPeu
+		.row
+			h6.col-xs-12=mfoo
+	block
+
+//- Peu estandar [sense Logo] amb Glyphicons
+mixin peu1(mTitolPeu,mDataPeu, mfoo)
+	#peu.encabezado.upround
+		.row
+			h5.col-xs-7.col-sm-8.col-md-10
+				span #{mTitolPeu} &nbsp; 
+				//- span.glyphicon.glyphicon-sunglasses &nbsp
+				span.glyphicon.glyphicon-education &nbsp;
+			h6.col-xs-4.col-sm-3.col-md-2 
+				span.glyphicon.glyphicon-home &nbsp;
+				span=mDataPeu
+		.row
+			h6.col-xs-12=mfoo
+			block
+			
+//- Modal (Pantalla d'ajuda Modal) 
+mixin modal(mId,mTopic, mModalTitle,mSotstitol, mContent)
+	div(id=mId class="modal fade" role="dialog")
+		div(class="modal-dialog")
+			// Modal Content 
+			.modal-content
+				.modal-header
+					button(type="button" class="close" data-dismiss="modal")&times;
+						h4.modal-title.text-muted=mModalTitle
+				.modal-body
+					h3=mSotstitol
+					p=mContent
+					+HelpText(mTopic)
+					//- +textAjuda()
+				.modal-footer
+					button(type="button" class="btn btn-default" data-dismiss="modal") Tancar!
+
+
+
+//- text pantalla Ajuda Pasos Per Parada 
+mixin HelpText(topic)
+	case topic
+		when 'Pasos'
+			//- h4 Has seleccionat Ajuda per pasos Reals per Parada/Linia
+			+textAjudaPasos()
+		when 'ComptaPasos'
+			//- h4 Has seleccionat Ajuda per pasos Reals per Parada/Linia
+			+textAjudaComptaPasos()
+		when 'HorTeor'
+			//- h4 Has seleccionat Ajuda per pasos Reals per Parada/Linia
+			+textAjudaHorTeor()
+		default
+			h2 Encara No s'ha definit un text d'ajuda per aquest  
+				em Tema 
+
+
+
+
+
+
