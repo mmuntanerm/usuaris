@@ -109,7 +109,7 @@ router.get('/usuaris/:tp?', function(req, res, next) {
       mapTpSalidas:mapTpSalidas,
     }
 
-  res.render('usuaris-paralel2',info  );
+  res.render('usuaris-paralel3',info  );
   // res.jsonp(dades);
 });
 
