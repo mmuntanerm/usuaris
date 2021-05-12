@@ -27,9 +27,9 @@ block content
     -var cabeceras = Array.from(new Set(dades.filter(x=>x.linea==ln).map(x=>`Sentido: ${x.sentido}:  Nd-${x.Nodo} - ${x.Nombre}`)))
     .row  
       each sn in sentidos
-        -var cabecerasS = Array.from(new Set(dades.filter(x=>x.linea==ln&x.sentido==sn).map(x=>`Sentido: ${x.sentido}:  Nd-${x.Nodo} - ${x.Nombre}`)))
+        -var cabecerasS = Array.from(new Set(dades.filter(x=>x.linea==ln&x.sentido==sn).map(x=>`Sentit: ${x.sentido} - Nd-${x.Nodo} - ${x.Nombre}`)))
         div.col-5.m-1 
-            h3.text-warning Sentido : #{sn}
+            h3.text-warning Sentit : #{sn}
             //- p &nbsp;
             -var sortides =  dades.filter(x=>x.linea==ln && x.sentido==sn).map(x=>x.HRPas) 
             -var sortides2 =  dades.filter(x=>x.linea==ln && x.sentido==sn).sort((x,y)=>x.instanteTEO-y.instanteTEO)
@@ -41,7 +41,8 @@ block content
               p &nbsp;
               h5.p-1 Capçaleres Linia Sentit #{sn}
               each cb in cabecerasS 
-                h6=cb
+                h6.hidden=cb
+                h6(class="Nd-#{cb.split('-')[2].trim()}")  Nd-#{cb.split('-')[2].trim()}  => #{cb.split('-')[3].trim()} 
     .div.hidden
       p &nbsp;
       h5 Cabeceras linea:
