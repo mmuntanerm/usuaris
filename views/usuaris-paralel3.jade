@@ -42,7 +42,7 @@ block content
            
             .clearfix.mt-2.spacer.hidden 
               p &nbsp; 
-            .clearfix.border.p-3
+            .clearfix.border.p-3.cabeceras-linea
               p &nbsp;
               h5.p-1 Capçaleres Linia #{ln} Sentit #{sn}: 
               each cb in cabecerasS 
@@ -53,7 +53,8 @@ block content
                 h6(class="leyendaCabecera Nd-#{cb.split('-')[2].trim()} #{categoriaSortidaRetol} ")  Nd-#{cb.split('-')[2].trim()}  => #{cb.split('-')[3].trim()}  
                   span.small.text-secondary  [T.Sortides: #{TotalSalidas}]
 
-                  
+    div.page-break.text-secondary  &nbsp;   EMT - Palma   Planificació - 2021           
+
     div.hidden
       p &nbsp;
       h5 Cabeceras linea:
@@ -62,7 +63,7 @@ block content
 
     p &nbsp;
 
-  div.container.no_hidden 
+  div.container.hidden 
     dl ----------------
       dt Categories de Sortides i total de sortides 
       each ss in infoCategoriaSalidas
@@ -72,5 +73,5 @@ block content
         dd L: #{ss.linea} #{ss.sentido} Nd-#{ss.cabecera} SALIDAS: #{ss.salidas}  - Categoria #{ss.categoria}  keyMap: [ #{keyMap} ] MAP value: #{mapValue} 
     p &nbsp;
 
-  p &nbsp;
+  p FIN de listado  &nbsp; 
       

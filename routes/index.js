@@ -94,7 +94,7 @@ router.get('/usuaris/raw', function(req, res, next) {
 
 /* GET home page. */
 router.get('/usuaris/:tp?', function(req, res, next) {
-  const {rows:dades}= require('../jsonDB/sortidesLAB.json')
+  const {rows:dades}= require('../jsonDB/sortidesLAB_xd.json')
   const {rows:linies}= require('../jsonDB/Linies.json')
 
   // console.log(linies.map(x=>x.Nombre));
