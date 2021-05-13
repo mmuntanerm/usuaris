@@ -1,5 +1,6 @@
 extends layoutBS.4.5
-
+block scripts
+  script( src="/javascripts/js1.js" ) 
 block content
   h1= title
  
@@ -49,7 +50,7 @@ block content
                 -var categoriaSortidaRetol = mapTpSalidas.get(keyMap).categoria || "cp0 ";    
                 -var TotalSalidas = mapTpSalidas.get(keyMap).salidas|| "OOps te Sortides Aquí ";            
                 h6.hidden=cb
-                h6(class="Nd-#{cb.split('-')[2].trim()} #{categoriaSortidaRetol} ")  Nd-#{cb.split('-')[2].trim()}  => #{cb.split('-')[3].trim()}  
+                h6(class="leyendaCabecera Nd-#{cb.split('-')[2].trim()} #{categoriaSortidaRetol} ")  Nd-#{cb.split('-')[2].trim()}  => #{cb.split('-')[3].trim()}  
                   span.small.text-secondary  [T.Sortides: #{TotalSalidas}]
 
                   
